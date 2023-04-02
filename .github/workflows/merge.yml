@@ -17,7 +17,7 @@ jobs:
           to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
           message: "build has been merged"
 
-        uses: ishween/whatsapp-push-notify-action@master
+        uses: khaled-ibtikar/whatsapp-push-notify-action@master
       
       - name : Run
         run: |
