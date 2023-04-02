@@ -15,9 +15,30 @@ jobs:
         with:
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
-            {
-              "key": "value",
-              "foo": "bar"
-            }
+              {
+              "blocks": [
+                {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "bar"
+                }
+                }
+              ],
+              "attachments": [
+                {
+                "color": "#FF0000",
+                "blocks": [
+                  {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "foo"
+                    }
+                  }
+                  ]
+                }
+              ]
+              }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
