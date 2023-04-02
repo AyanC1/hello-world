@@ -3,9 +3,9 @@ name: Hello World on Merge
 on:
   push:
     branches: [ main ]
-jobs:
+
   id: slack
-  - uses: slackapi/slack-github-action@v1.23.0
+  uses: slackapi/slack-github-action@v1.23.0
   with:
     # This data can be any valid JSON from a previous step in the GitHub Action
     payload: |
