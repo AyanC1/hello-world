@@ -5,40 +5,20 @@ on:
     branches: [ main ]
 
 jobs:
-  test_pull_request:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.23.0
-        with:
-          # This data can be any valid JSON from a previous step in the GitHub Action
-          payload: |
-             {
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "bar"
-                  }
-                }
-              ],
-              "attachments": [
-                {
-                  "color": "#FF0000",
-                  "blocks": [
-                    {
-                      "type": "section",
-                      "text": {
-                        "type": "mrkdwn",
-                        "text": "foo"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
+      - uses: actions/checkout@master
+      - name: whatsapp-notify
+        id: whatsapp-notify
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          account_sid: ${{ env.account_sid }}
+          auth_token: ${{ secrets.auth_token }}
+          to_whatsapp_no: ${{ secrets.to_whatsapp_no }}
+
+
+        uses: ishween/whatsapp-push-notify-action@master
+      
+      - name : Run
+        run: |
+          echo 'Start!'
