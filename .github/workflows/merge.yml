@@ -22,3 +22,13 @@ jobs:
       - name : Run
         run: |
           echo 'Start!'
+      - name: 'Sending SMS Notification'
+        uses: twilio-labs/actions-sms@v1
+        with:
+          fromPhoneNumber: '+15855523680'
+          toPhoneNumber: ${{ secrets.to_whatsapp_no }}
+          message: 'Hello from Twilio'
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.account_sid }}
+          TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+          TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
